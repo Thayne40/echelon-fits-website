@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">// Cart State</p>
+<p class="p1">let cart = [];</p>
+<p class="p1">let currentFilter = 'all';</p>
+<p class="p2"><br></p>
+<p class="p1">// Navigation</p>
+<p class="p1">function navigateTo(page) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('.page').forEach(p =&gt; p.classList.remove('active'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById(`${page}-page`).classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>window.scrollTo(0, 0);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('mobile-menu').classList.add('hidden');</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (page === 'memberships') loadMemberships();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (page === 'classes') loadClasses();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (page === 'programs') loadPrograms();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (page === 'shop') loadProducts();</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function toggleMobileMenu() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('mobile-menu').classList.toggle('hidden');</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function toggleCart() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('cart-sidebar').classList.toggle('open');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('cart-overlay').classList.toggle('active');</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Membership Data</p>
+<p class="p1">const memberships = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'Basic', price: 20, color: '#4B5563', features: ['Access 6AM-10PM', 'Cardio equipment', 'Strength training', 'Locker access', '1 guest pass/month'] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'Standard', price: 40, color: '#1E3A8A', popular: true, features: ['24/7 access', 'All Basic features', 'Unlimited classes', '3 guest passes', 'Towel service', '10% merch discount'] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'Premium', price: 60, color: '#1E40AF', features: ['24/7 access', 'All Standard features', '2 PT sessions/month', '5 guest passes', 'Premium locker', '15% discount'] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'VIP', price: 100, color: '#D97706', features: ['Private entrance', 'All Premium features', '8 PT sessions/month', 'Unlimited guests', 'Luxury locker', '25% discount', 'VIP lounge', 'Massage therapy'] }</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">function loadMemberships() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const container = document.getElementById('membership-container');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>container.innerHTML = memberships.map(tier =&gt; `</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="relative rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all" style="background: linear-gradient(135deg, ${tier.color}, ${tier.color}dd);"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>${tier.popular ? '&lt;div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-semibold"&gt;Most Popular&lt;/div&gt;' : ''}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-2xl font-bold mb-2"&gt;${tier.name}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mb-6"&gt;&lt;span class="text-5xl font-bold"&gt;$${tier.price}&lt;/span&gt;&lt;span class="text-lg"&gt;/month&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="space-y-3 mb-8"&gt;${tier.features.map(f =&gt; `&lt;li class="flex items-start"&gt;&lt;span class="mr-2"&gt;✓&lt;/span&gt;&lt;span class="text-sm"&gt;${f}&lt;/span&gt;&lt;/li&gt;`).join('')}&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="w-full bg-white text-blue-900 py-3 rounded-lg font-semibold hover:bg-gray-100"&gt;Get Started&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`).join('');</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Classes Data</p>
+<p class="p1">const classes = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'HIIT Training', time: '6:00 AM', instructor: 'Sarah Johnson', spots: 12, difficulty: 'Advanced' },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'Strength &amp; Power', time: '7:30 AM', instructor: 'Mike Thompson', spots: 8, difficulty: 'Intermediate' },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'Yoga Flow', time: '9:00 AM', instructor: 'Emma Davis', spots: 15, difficulty: 'All Levels' },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'Spin Class', time: '12:00 PM', instructor: 'Chris Martinez', spots: 3, difficulty: 'Intermediate' },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'Boxing', time: '5:00 PM', instructor: 'Jordan Lee', spots: 10, difficulty: 'Beginner' },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'Olympic Lifting', time: '6:30 PM', instructor: 'Alex Rodriguez', spots: 6, difficulty: 'Advanced' }</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">function loadClasses() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const container = document.getElementById('classes-container');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>container.innerHTML = classes.map(cls =&gt; `</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bg-white rounded-xl p-6 shadow-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-start mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;&lt;h3 class="text-xl font-bold mb-1"&gt;${cls.name}&lt;/h3&gt;&lt;p class="text-sm text-gray-600"&gt;${cls.instructor}&lt;/p&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="px-3 py-1 rounded-full text-xs font-semibold ${cls.difficulty === 'Advanced' ? 'bg-red-100 text-red-700' : cls.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' : 'bg-green-100 text-green-700'}"&gt;${cls.difficulty}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex items-center text-gray-600 mb-4"&gt;&lt;span class="text-sm"&gt;🕐 ${cls.time}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="text-sm font-semibold ${cls.spots &lt; 5 ? 'text-red-600' : 'text-green-600'}"&gt;${cls.spots} spots left&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="px-4 py-2 bg-blue-900 text-white rounded-lg text-sm font-semibold hover:bg-blue-800"&gt;Book Now&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`).join('');</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Programs Data</p>
+<p class="p1">const programs = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: '12-Week Transformation', description: 'Complete body transformation combining strength, nutrition, and accountability', duration: '12 weeks', difficulty: 'All Levels', includes: ['3x weekly training', 'Meal plans', 'Progress tracking', 'Body analysis'] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'Strength Builder', description: 'Build serious strength with progressive overload principles', duration: '8 weeks', difficulty: 'Intermediate-Advanced', includes: ['4x weekly sessions', 'Strength testing', 'Video analysis', 'Supplement guide'] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'Athletic Performance', description: 'Enhance speed, agility, and explosive power', duration: '10 weeks', difficulty: 'Advanced', includes: ['Sport-specific training', 'Plyometrics', 'Speed drills', 'Performance metrics'] },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ name: 'Weight Loss Challenge', description: 'Sustainable fat loss through training and nutrition', duration: '8 weeks', difficulty: 'All Levels', includes: ['Group sessions', 'Weekly check-ins', 'Meal prep guides', 'Community support'] }</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">function loadPrograms() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const container = document.getElementById('programs-container');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>container.innerHTML = programs.map(program =&gt; `</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 shadow-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-start mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-2xl font-bold"&gt;${program.name}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="px-3 py-1 bg-blue-900 text-white rounded-full text-sm font-semibold"&gt;${program.duration}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-gray-600 mb-4"&gt;${program.description}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="mb-4"&gt;&lt;span class="inline-block px-3 py-1 bg-white rounded-full text-sm font-semibold"&gt;${program.difficulty}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="mb-6"&gt;&lt;p class="font-semibold mb-2"&gt;Includes:&lt;/p&gt;&lt;ul class="space-y-2"&gt;${program.includes.map(item =&gt; `&lt;li class="flex items-start"&gt;&lt;span class="mr-2 text-blue-900"&gt;→&lt;/span&gt;&lt;span class="text-sm"&gt;${item}&lt;/span&gt;&lt;/li&gt;`).join('')}&lt;/ul&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="w-full bg-blue-900 text-white py-3 rounded-lg font-semibold hover:bg-blue-800"&gt;Enroll Now&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`).join('');</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Products Data</p>
+<p class="p1">const products = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 1, name: 'Echelon Signature Tee', category: 'apparel', price: 29.99, rating: 4.8 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 2, name: 'Performance Tank', category: 'apparel', price: 24.99, rating: 4.7 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 3, name: 'Premium Hoodie', category: 'apparel', price: 54.99, rating: 4.9 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 4, name: 'Training Joggers', category: 'apparel', price: 49.99, rating: 4.6 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 5, name: 'Athletic Shorts', category: 'apparel', price: 34.99, rating: 4.7 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 6, name: 'Women\'s Leggings', category: 'apparel', price: 44.99, rating: 4.9 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 7, name: 'Sports Bra', category: 'apparel', price: 32.99, rating: 4.8 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 8, name: 'Compression Shirt', category: 'apparel', price: 39.99, rating: 4.6 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 9, name: 'Snapback Hat', category: 'apparel', price: 24.99, rating: 4.5 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 10, name: 'Gym Duffel Bag', category: 'accessories', price: 59.99, rating: 4.9 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 11, name: 'Water Bottle', category: 'accessories', price: 24.99, rating: 4.8 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 12, name: 'Shaker Cup', category: 'accessories', price: 14.99, rating: 4.5 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 13, name: 'Resistance Bands', category: 'accessories', price: 29.99, rating: 4.7 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 14, name: 'Lifting Straps', category: 'accessories', price: 19.99, rating: 4.8 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 15, name: 'Wrist Wraps', category: 'accessories', price: 17.99, rating: 4.6 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 16, name: 'Yoga Mat', category: 'accessories', price: 39.99, rating: 4.8 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 17, name: 'Foam Roller', category: 'accessories', price: 29.99, rating: 4.6 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ id: 18, name: 'Lifting Belt', category: 'accessories', price: 49.99, rating: 4.9 }</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">function loadProducts() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const filtered = currentFilter === 'all' ? products : products.filter(p =&gt; p.category === currentFilter);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const container = document.getElementById('products-container');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>container.innerHTML = filtered.map(product =&gt; `</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover-scale"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-6xl"&gt;📦&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="p-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="font-bold text-lg mb-2"&gt;${product.name}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex items-center mb-2"&gt;&lt;span class="text-yellow-400 text-sm"&gt;★ ${product.rating}&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-xl font-bold text-blue-900"&gt;$${product.price}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="addToCart(${product.id})" class="p-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800"&gt;🛒&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>`).join('');</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function filterProducts(category) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>currentFilter = category;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>loadProducts();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('#shop-page button').forEach(btn =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>btn.classList.remove('bg-blue-900', 'text-white');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>btn.classList.add('bg-white', 'text-gray-700');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>event.target.classList.remove('bg-white', 'text-gray-700');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>event.target.classList.add('bg-blue-900', 'text-white');</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Cart Functions</p>
+<p class="p1">function addToCart(productId) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const product = products.find(p =&gt; p.id === productId);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (product) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cart.push(product);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateCart();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>alert(`${product.name} added to cart!`);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function updateCart() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const count = cart.length;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const cartCount = document.getElementById('cart-count');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const cartTotal = document.getElementById('cart-total');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const cartItems = document.getElementById('cart-items');</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (count &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cartCount.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cartCount.textContent = count;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cartCount.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>cartTotal.textContent = count;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (count === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cartItems.innerHTML = '&lt;p class="text-gray-500"&gt;Your cart is empty&lt;/p&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const total = cart.reduce((sum, item) =&gt; sum + item.price, 0);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cartItems.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>${cart.map((item, idx) =&gt; `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="font-semibold"&gt;${item.name}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-gray-600"&gt;$${item.price}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button onclick="removeFromCart(${idx})" class="text-red-600 hover:text-red-800"&gt;✕&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`).join('')}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pt-4 border-t"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex justify-between mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="font-bold"&gt;Total:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="font-bold text-blue-900"&gt;$${total.toFixed(2)}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="w-full bg-blue-900 text-white py-3 rounded-lg font-semibold hover:bg-blue-800"&gt;Checkout&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function removeFromCart(index) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>cart.splice(index, 1);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>updateCart();</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Initialize</p>
+<p class="p1">document.addEventListener('DOMContentLoaded', function() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>navigateTo('home');</p>
+<p class="p1">});</p>
+</body>
+</html>
