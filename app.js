@@ -94,24 +94,270 @@ function loadPrograms() {
 }
 
 const products = [
-    { id: 1, name: 'Echelon Signature Tee', category: 'apparel', price: 29.99, rating: 4.8 },
-    { id: 2, name: 'Performance Tank', category: 'apparel', price: 24.99, rating: 4.7 },
-    { id: 3, name: 'Premium Hoodie', category: 'apparel', price: 54.99, rating: 4.9 },
-    { id: 4, name: 'Training Joggers', category: 'apparel', price: 49.99, rating: 4.6 },
-    { id: 5, name: 'Athletic Shorts', category: 'apparel', price: 34.99, rating: 4.7 },
-    { id: 6, name: 'Women\'s Leggings', category: 'apparel', price: 44.99, rating: 4.9 },
-    { id: 7, name: 'Sports Bra', category: 'apparel', price: 32.99, rating: 4.8 },
-    { id: 8, name: 'Compression Shirt', category: 'apparel', price: 39.99, rating: 4.6 },
-    { id: 9, name: 'Snapback Hat', category: 'apparel', price: 24.99, rating: 4.5 },
-    { id: 10, name: 'Gym Duffel Bag', category: 'accessories', price: 59.99, rating: 4.9 },
-    { id: 11, name: 'Water Bottle', category: 'accessories', price: 24.99, rating: 4.8 },
-    { id: 12, name: 'Shaker Cup', category: 'accessories', price: 14.99, rating: 4.5 },
-    { id: 13, name: 'Resistance Bands', category: 'accessories', price: 29.99, rating: 4.7 },
-    { id: 14, name: 'Lifting Straps', category: 'accessories', price: 19.99, rating: 4.8 },
-    { id: 15, name: 'Wrist Wraps', category: 'accessories', price: 17.99, rating: 4.6 },
-    { id: 16, name: 'Yoga Mat', category: 'accessories', price: 39.99, rating: 4.8 },
-    { id: 17, name: 'Foam Roller', category: 'accessories', price: 29.99, rating: 4.6 },
-    { id: 18, name: 'Lifting Belt', category: 'accessories', price: 49.99, rating: 4.9 }
+    // APPAREL
+    {
+        id: 1,
+        name: "Echelon Fits Performance T-Shirt",
+        price: 29.99,
+        category: "apparel",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
+        description: "Premium cotton blend, moisture-wicking",
+        rating: 4.8
+    },
+    {
+        id: 2,
+        name: "Classic Logo Hoodie",
+        price: 54.99,
+        category: "apparel",
+        image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500&h=500&fit=crop",
+        description: "Ultra-soft fleece, perfect for layering",
+        rating: 4.9
+    },
+    {
+        id: 3,
+        name: "Athletic Tank Top",
+        price: 24.99,
+        category: "apparel",
+        image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&h=500&fit=crop",
+        description: "Lightweight and breathable",
+        rating: 4.7
+    },
+    {
+        id: 4,
+        name: "Performance Joggers",
+        price: 49.99,
+        category: "apparel",
+        image: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=500&h=500&fit=crop",
+        description: "Four-way stretch fabric, tapered fit",
+        rating: 4.8
+    },
+    {
+        id: 5,
+        name: "Compression Shorts",
+        price: 34.99,
+        category: "apparel",
+        image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&h=500&fit=crop",
+        description: "Muscle support and flexibility",
+        rating: 4.6
+    },
+    {
+        id: 6,
+        name: "Training Shorts",
+        price: 32.99,
+        category: "apparel",
+        image: "https://images.unsplash.com/photo-1591293835940-4c1e72c9dd77?w=500&h=500&fit=crop",
+        description: "Lightweight with secure pockets",
+        rating: 4.7
+    },
+    {
+        id: 7,
+        name: "Snapback Hat",
+        price: 24.99,
+        category: "apparel",
+        image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=500&h=500&fit=crop",
+        description: "Embroidered logo, adjustable fit",
+        rating: 4.5
+    },
+    {
+        id: 8,
+        name: "Performance Leggings",
+        price: 44.99,
+        category: "apparel",
+        image: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=500&h=500&fit=crop",
+        description: "High-waisted, squat-proof material",
+        rating: 4.9
+    },
+    {
+        id: 9,
+        name: "Sports Bra",
+        price: 32.99,
+        category: "apparel",
+        image: "https://images.unsplash.com/photo-1596516109370-29001ec8ec36?w=500&h=500&fit=crop",
+        description: "Maximum support, moisture-wicking",
+        rating: 4.8
+    },
+    {
+        id: 10,
+        name: "Compression Shirt",
+        price: 39.99,
+        category: "apparel",
+        image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500&h=500&fit=crop",
+        description: "Long sleeve, temperature regulating",
+        rating: 4.6
+    },
+    // ACCESSORIES
+    {
+        id: 11,
+        name: "Stainless Steel Water Bottle",
+        price: 19.99,
+        category: "accessories",
+        image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop",
+        description: "32oz, keeps drinks cold for 24 hours",
+        rating: 4.8
+    },
+    {
+        id: 12,
+        name: "Premium Gym Bag",
+        price: 64.99,
+        category: "accessories",
+        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop",
+        description: "Water-resistant, multiple compartments",
+        rating: 4.9
+    },
+    {
+        id: 13,
+        name: "Resistance Band Set",
+        price: 29.99,
+        category: "accessories",
+        image: "https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=500&h=500&fit=crop",
+        description: "5 levels of resistance included",
+        rating: 4.7
+    },
+    {
+        id: 14,
+        name: "Lifting Straps",
+        price: 14.99,
+        category: "accessories",
+        image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&h=500&fit=crop",
+        description: "Heavy-duty cotton, reinforced stitching",
+        rating: 4.8
+    },
+    {
+        id: 15,
+        name: "Workout Gloves",
+        price: 19.99,
+        category: "accessories",
+        image: "https://images.unsplash.com/photo-1556906918-e24edfcbdfb8?w=500&h=500&fit=crop",
+        description: "Padded palm, breathable mesh",
+        rating: 4.6
+    },
+    {
+        id: 16,
+        name: "Jump Rope",
+        price: 12.99,
+        category: "accessories",
+        image: "https://images.unsplash.com/photo-1611672585731-fa10502796c8?w=500&h=500&fit=crop",
+        description: "Speed rope with ball bearings",
+        rating: 4.5
+    },
+    {
+        id: 17,
+        name: "Foam Roller",
+        price: 24.99,
+        category: "accessories",
+        image: "https://images.unsplash.com/photo-1601024445121-e5b82f020549?w=500&h=500&fit=crop",
+        description: "High-density foam for muscle recovery",
+        rating: 4.6
+    },
+    {
+        id: 18,
+        name: "Shaker Bottle",
+        price: 9.99,
+        category: "accessories",
+        image: "https://images.unsplash.com/photo-1607454806185-8b970661ff81?w=500&h=500&fit=crop",
+        description: "BPA-free, leak-proof lid with mixer",
+        rating: 4.5
+    },
+    {
+        id: 19,
+        name: "Yoga Mat",
+        price: 34.99,
+        category: "accessories",
+        image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=500&h=500&fit=crop",
+        description: "Extra thick, non-slip surface",
+        rating: 4.8
+    },
+    {
+        id: 20,
+        name: "Wrist Wraps",
+        price: 16.99,
+        category: "accessories",
+        image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&h=500&fit=crop",
+        description: "Adjustable support for heavy lifts",
+        rating: 4.6
+    },
+    {
+        id: 21,
+        name: "Lifting Belt",
+        price: 49.99,
+        category: "accessories",
+        image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&h=500&fit=crop",
+        description: "Leather construction, double prong buckle",
+        rating: 4.9
+    },
+    // SUPPLEMENTS
+    {
+        id: 22,
+        name: "Whey Protein Powder",
+        price: 49.99,
+        category: "supplements",
+        image: "https://images.unsplash.com/photo-1579722821273-0f6c7d5a8747?w=500&h=500&fit=crop",
+        description: "25g protein per serving, chocolate flavor",
+        rating: 4.8
+    },
+    {
+        id: 23,
+        name: "Pre-Workout Energy",
+        price: 39.99,
+        category: "supplements",
+        image: "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=500&h=500&fit=crop",
+        description: "200mg caffeine, explosive energy",
+        rating: 4.7
+    },
+    {
+        id: 24,
+        name: "BCAA Recovery",
+        price: 34.99,
+        category: "supplements",
+        image: "https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=500&h=500&fit=crop",
+        description: "Amino acids for muscle recovery",
+        rating: 4.6
+    },
+    {
+        id: 25,
+        name: "Creatine Monohydrate",
+        price: 24.99,
+        category: "supplements",
+        image: "https://images.unsplash.com/photo-1579722821273-0f6c7d5a8747?w=500&h=500&fit=crop",
+        description: "5g per serving, unflavored",
+        rating: 4.8
+    },
+    {
+        id: 26,
+        name: "Post-Workout Recovery",
+        price: 44.99,
+        category: "supplements",
+        image: "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=500&h=500&fit=crop",
+        description: "Carbs + protein for optimal recovery",
+        rating: 4.7
+    },
+    {
+        id: 27,
+        name: "Multivitamin Pack",
+        price: 29.99,
+        category: "supplements",
+        image: "https://images.unsplash.com/photo-1550572017-4fade102c5a8?w=500&h=500&fit=crop",
+        description: "Daily essential vitamins and minerals",
+        rating: 4.6
+    },
+    {
+        id: 28,
+        name: "Fat Burner Capsules",
+        price: 39.99,
+        category: "supplements",
+        image: "https://images.unsplash.com/photo-1584308972272-9e4e7685e80f?w=500&h=500&fit=crop",
+        description: "Thermogenic formula, metabolism support",
+        rating: 4.5
+    },
+    {
+        id: 29,
+        name: "Electrolyte Powder",
+        price: 19.99,
+        category: "supplements",
+        image: "https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=500&h=500&fit=crop",
+        description: "Hydration support, zero sugar",
+        rating: 4.7
+    }
 ];
 
 function loadProducts() {
@@ -119,15 +365,16 @@ function loadProducts() {
     const container = document.getElementById('products-container');
     container.innerHTML = filtered.map(product => `
         <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover-scale">
-            <div class="h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                <div class="text-6xl">📦</div>
+            <div class="h-48 bg-gray-100 overflow-hidden">
+                <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
             </div>
             <div class="p-4">
-                <h3 class="font-bold text-lg mb-2">${product.name}</h3>
+                <h3 class="font-bold text-lg mb-1">${product.name}</h3>
+                <p class="text-sm text-gray-600 mb-2">${product.description}</p>
                 <div class="flex items-center mb-2"><span class="text-yellow-400 text-sm">★ ${product.rating}</span></div>
                 <div class="flex items-center justify-between">
                     <span class="text-xl font-bold text-blue-900">$${product.price}</span>
-                    <button onclick="addToCart(${product.id})" class="p-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800">🛒</button>
+                    <button onclick="addToCart(${product.id})" class="px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 font-semibold">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -137,7 +384,7 @@ function loadProducts() {
 function filterProducts(category) {
     currentFilter = category;
     loadProducts();
-    document.querySelectorAll('#shop-page button').forEach(btn => {
+    document.querySelectorAll('#shop-page .mb-8 button').forEach(btn => {
         btn.classList.remove('bg-blue-900', 'text-white');
         btn.classList.add('bg-white', 'text-gray-700');
     });
